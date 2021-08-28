@@ -18,16 +18,14 @@ public class TicTacToeGame {
 		char xoro = sc.next().charAt(0);
 		
 		if(xoro == 'X') {
-			System.out.println("Player selected X");
-			System.out.println("Computer Letter O");
 			player = 'X';
 			comp ='O';
 		}else {
-			System.out.println("Player selected O");
-			System.out.println("Computer Letter X");
 			player = 'O';
 			comp ='X';
 		}
+		System.out.println("Player selected "+player);
+		System.out.println("Computer Letter "+comp);
 	}
 	
 	public static void main(String[] args) {
