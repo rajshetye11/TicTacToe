@@ -3,9 +3,10 @@ package com.bridgelabz.tictactoe;
 import java.util.Scanner;
 
 public class TicTacToeGame {
-	char [] board = new char[10];
+	public static char [] board = new char[10];
 	Scanner sc = new Scanner(System.in);
 	public char player, comp;
+	public int pos;
 	
 	public void ticTacToeBoard() {
 		
@@ -28,7 +29,7 @@ public class TicTacToeGame {
 		System.out.println("Computer Letter "+comp);
 	}
 	
-	public void showBoard()
+	public void showBoard(char[] board)
     {
         System.out.println(" " + board[1] + " | "
                            + board[2] + " | " + board[3]
@@ -42,11 +43,23 @@ public class TicTacToeGame {
                            + board[8] + " | " + board[9]
                            + " ");
     }
+	
+	public void move(char[] board) {
+		System.out.println("Enter location (1-9)");
+		pos = sc.nextInt();
+		if(board[pos]==' ') {
+			board[pos] = player;
+		}else {
+			System.out.println("Enter Valid Location");
+		}
+	}
 	public static void main(String[] args) {
 		System.out.println("Welcome To TicTacToe ");
 		TicTacToeGame t1 = new TicTacToeGame();
 		t1.selectXorO();
 		t1.ticTacToeBoard();
-		t1.showBoard();
+		t1.showBoard(board);
+		t1.move(board);
+		t1.showBoard(board);
 	}
 }
