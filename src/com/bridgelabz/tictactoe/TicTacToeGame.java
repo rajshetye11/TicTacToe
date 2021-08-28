@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 	Scanner sc = new Scanner(System.in);
+	public char player, comp;
 	
 	public void ticTacToeBoard() {
 		char [] board = new char[10];
@@ -14,20 +15,18 @@ public class TicTacToeGame {
 	
 	public void selectXorO() {
 		System.out.println("Select X or O");
-		String xoro = sc.nextLine();
-		char player, comp;
-		if(xoro.equals("X")) {
+		char xoro = sc.next().charAt(0);
+		
+		if(xoro == 'X') {
 			System.out.println("Player selected X");
 			System.out.println("Computer Letter O");
 			player = 'X';
 			comp ='O';
-		}else if(xoro.equals("O")) {
+		}else {
 			System.out.println("Player selected O");
 			System.out.println("Computer Letter X");
 			player = 'O';
 			comp ='X';
-		}else {
-			System.out.println("Enter Valid Letter");
 		}
 	}
 	
