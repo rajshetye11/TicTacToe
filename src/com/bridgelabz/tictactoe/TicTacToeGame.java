@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TicTacToeGame {
 	public static char [] board = new char[10];
 	Scanner sc = new Scanner(System.in);
-	public char player, comp;
+	public static char player, comp;
 	public int pos;
 	
 	public void ticTacToeBoard() {
@@ -13,6 +13,7 @@ public class TicTacToeGame {
 		for(int i = 1; i<board.length ; i++) {
 			board[i] = ' ';
 		}
+		
 		
 	}
 	
@@ -44,14 +45,30 @@ public class TicTacToeGame {
                            + " ");
     }
 	
-	public void move(char[] board) {
-		System.out.println("Enter location (1-9)");
-		pos = sc.nextInt();
-		if(board[pos]==' ') {
-			board[pos] = player;
-		}else {
-			System.out.println("Enter Valid Location");
+	
+	public boolean isEmpty(char[] board, int pos) {
+		for (int i=1;i<board.length;i++) {
+			if (i==pos && board[i]==' ') {
+				return true;
+			}
 		}
+		return false;
+	}
+	
+	public char[] move(char[] board,char player) {
+		pos = 0;
+		while(true) {
+			System.out.println("Enter location (1-9)");
+			pos = sc.nextInt();
+			if(pos <= 9 || pos > 0) {
+				if (isEmpty(board, pos)) {
+					board[pos] = player;
+					break;
+				}
+			}
+		}
+		return board;
+		
 	}
 	public static void main(String[] args) {
 		System.out.println("Welcome To TicTacToe ");
@@ -59,7 +76,8 @@ public class TicTacToeGame {
 		t1.selectXorO();
 		t1.ticTacToeBoard();
 		t1.showBoard(board);
-		t1.move(board);
+		t1.move(board,player);
 		t1.showBoard(board);
+		
 	}
 }
