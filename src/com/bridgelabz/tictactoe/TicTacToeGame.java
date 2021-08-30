@@ -56,14 +56,14 @@ public class TicTacToeGame {
 		return false;
 	}
 	
-	public char[] move(char[] board,char player) {
+	public char[] move(char[] board,char playerOrComp) {
 		pos = 0;
 		while(true) {
 			System.out.println("Enter location (1-9)");
 			pos = sc.nextInt();
 			if(pos <= 9 || pos > 0) {
 				if (isEmpty(board, pos)) {
-					board[pos] = player;
+					board[pos] = playerOrComp;
 					break;
 				}
 			}
@@ -92,18 +92,74 @@ public class TicTacToeGame {
 		}
 		
 	}
+	
+	public boolean gameResult(char[] board, char playerOrComp) {
+		boolean won = false;
+		if(board[1] == playerOrComp && board[2] == playerOrComp && board[3] == playerOrComp) {
+			won = true;
+		}else if(board[4] == playerOrComp && board[5] == playerOrComp && board[6] == playerOrComp) {
+			won = true;
+		}else if(board[7] == playerOrComp && board[8] == playerOrComp && board[9] == playerOrComp) {
+			won = true;
+		}else if(board[1] == playerOrComp && board[5] == playerOrComp && board[9] == playerOrComp) {
+			won = true;
+		}else if(board[3] == playerOrComp && board[5] == playerOrComp && board[7] == playerOrComp) {
+			won = true;
+		}else if(board[1] == playerOrComp && board[4] == playerOrComp && board[7] == playerOrComp) {
+			won = true;
+		}else if(board[2] == playerOrComp && board[5] == playerOrComp && board[8] == playerOrComp) {
+			won = true;
+		}else if(board[3] == playerOrComp && board[6] == playerOrComp && board[9] == playerOrComp) {
+			won = true;
+		}
+		return won;
+	}
+	
+	public static boolean checkSpace(char[] board) {
+		for(int i=1;i<10;i++) {
+			if (board[i] == (' ')) return true;
+		}
+		return false;
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome To TicTacToe ");
 		TicTacToeGame t1 = new TicTacToeGame();
 		t1.selectXorO();
 		t1.ticTacToeBoard();
 		t1.showBoard(board);
-		if(t1.toss() == "player") {
-			t1.move(board,player);
-		}else {
-			t1.move(board,comp);
+		int choose = (t1.toss() == "player") ? 1 : 0;
+		while(true) {
+			if (t1.checkSpace(board)) {
+				if (choose == 1) {
+					System.out.print("Player ");
+					board = t1.move(board, player);
+					if (t1.gameResult(board,player)) {
+						System.out.println("Player won.");
+						break;
+					}
+					else {
+						choose = 0;
+					}
+				}
+				else {
+					System.out.print("Computer ");
+					board = t1.move(board, comp);
+					if (t1.gameResult(board,comp)) {
+						System.out.println("Computer won.");
+						break;
+					}
+					else {
+						choose = 1;
+					}
+				}
+				t1.showBoard(board);
+			}
+			else {
+				System.out.println("Game Tie.");
+				break;
+			}
 		}
-		t1.showBoard(board);
 		
 		
 	
