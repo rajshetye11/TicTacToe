@@ -122,6 +122,23 @@ public class TicTacToeGame {
 		return false;
 	}
 	
+	
+	public char[] compMove(char[] board,char playerOrComp) {
+//		pos = 0;
+		while(true) {
+			System.out.println("Enter location (1-9)");
+			pos = sc.nextInt();
+			if(pos <= 9 || pos > 0) {
+				if (isEmpty(board, pos)) {
+					board[pos] = playerOrComp;
+					break;
+				}
+			}
+		}
+		return board;
+		
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome To TicTacToe ");
 		TicTacToeGame t1 = new TicTacToeGame();
@@ -144,14 +161,14 @@ public class TicTacToeGame {
 				}
 				else {
 					System.out.print("Computer ");
-					board = t1.move(board, comp);
+					board = t1.compMove(board, comp);
 					if (t1.gameResult(board,comp)) {
 						System.out.println("Computer won.");
 						break;
 					}
 					else {
 						choose = 1;
-					}
+					}	
 				}
 				t1.showBoard(board);
 			}
@@ -159,10 +176,8 @@ public class TicTacToeGame {
 				System.out.println("Game Tie.");
 				break;
 			}
+			
 		}
-		
-		
 	
-		
 	}
 }
