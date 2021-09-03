@@ -63,7 +63,7 @@ public class TicTacToeGame {
 			pos = sc.nextInt();
 			if(pos <= 9 || pos > 0) {
 				if (isEmpty(board, pos)) {
-					board[pos] = playerOrComp;
+					cornerPosition(pos, board, playerOrComp);
 					break;
 				}
 			}
@@ -161,6 +161,31 @@ private int opponentWin(char[] board,char compOrPlayer,char playerOrComp) {
 			}
 		}		
 		return 0;
+	}
+	
+	
+	void cornerPosition(int move,char [] board, char playerOrComp) {
+		if(gameResult(board, playerOrComp)) {
+			System.out.println("win");
+		}else {
+			for(int i=0;i<board.length;i++) {
+				if(board[1]==' ') {
+					board[1]=playerOrComp;
+					return;
+				}else if(board[3]==' ') {
+					board[3]=playerOrComp;
+					return;
+				}else if(board[7]==' ') {
+					board[7]=playerOrComp;
+					return;
+				}else if(board[9]==' ') {
+					board[9]=playerOrComp;
+					return;
+				}
+			}
+		}
+		board[move] = playerOrComp;
+		showBoard(board);
 	}
 	
 	
