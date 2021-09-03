@@ -124,7 +124,10 @@ public class TicTacToeGame {
 	
 	
 	public char[] compMove(char[] board,char playerOrComp) {
-//		pos = 0;
+		if (checkComputerWin(board, playerOrComp)!=0) {
+		board[checkComputerWin(board, playerOrComp)]=playerOrComp;
+		return board;
+	}
 		while(true) {
 			System.out.println("Enter location (1-9)");
 			pos = sc.nextInt();
@@ -138,6 +141,18 @@ public class TicTacToeGame {
 		return board;
 		
 	}
+	
+	private int checkComputerWin(char[] board, char comp) {
+		for(int i=1;i<board.length;i++) {
+			if(board[i] == '_') {
+				board[i] = comp;
+				if(gameResult(board, comp)) return i;
+				else board[i] = ' ';
+			}
+		}		
+		return 0;
+	}
+	
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome To TicTacToe ");
