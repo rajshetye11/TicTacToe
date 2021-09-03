@@ -128,18 +128,28 @@ public class TicTacToeGame {
 		board[checkComputerWin(board, playerOrComp)]=playerOrComp;
 		return board;
 	}
-		while(true) {
-			System.out.println("Enter location (1-9)");
-			pos = sc.nextInt();
-			if(pos <= 9 || pos > 0) {
-				if (isEmpty(board, pos)) {
-					board[pos] = playerOrComp;
-					break;
-				}
-			}
+		char compOrPlayer = (playerOrComp == 'X')? 'O':'X';
+		int index = opponentWin(board, compOrPlayer,playerOrComp);
+		if (index!=0) {
+			board[index]=playerOrComp;
+			return board;
 		}
 		return board;
 		
+	}
+	
+private int opponentWin(char[] board,char compOrPlayer,char playerOrComp) {
+		
+		for(int i=1;i<board.length;i++) {
+			if(board[i] == '_') {
+				board[i] = compOrPlayer;
+				if(gameResult(board, compOrPlayer)) {
+					return i;
+				}
+				else board[i] = ' ';
+			}
+		}		
+		return 0;
 	}
 	
 	private int checkComputerWin(char[] board, char comp) {
