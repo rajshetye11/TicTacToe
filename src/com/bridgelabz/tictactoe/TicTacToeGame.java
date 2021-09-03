@@ -64,6 +64,7 @@ public class TicTacToeGame {
 			if(pos <= 9 || pos > 0) {
 				if (isEmpty(board, pos)) {
 					cornerPosition(pos, board, playerOrComp);
+					
 					break;
 				}
 			}
@@ -181,6 +182,23 @@ private int opponentWin(char[] board,char compOrPlayer,char playerOrComp) {
 				}else if(board[9]==' ') {
 					board[9]=playerOrComp;
 					return;
+				}else if(board[1] != ' ' || board[3] != ' ' || board[7] != ' ' || board[9] != ' ' ) {
+					if(board[2]==' ') {
+						board[2]=playerOrComp;
+						return;
+					}else if(board[4]==' ') {
+						board[4]=playerOrComp;
+						return;
+					}else if(board[5]==' ') {
+						board[5]=playerOrComp;
+						return;
+					}else if(board[6]==' ') {
+						board[6]=playerOrComp;
+						return;
+					}else if(board[8]==' ') {
+					board[8]=playerOrComp;
+					return;
+					}
 				}
 			}
 		}
